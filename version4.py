@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import messagebox, ttk
 
 # PRODUCT CLASS
+# PRODUCT CLASS
 class Product:
     def __init__(self, product_id, name, price, description, quantity):
         self.product_id = product_id
@@ -20,7 +21,7 @@ class Product:
             return self.product_id == other.product_id
         return False
 
-    def __hash__(self, other):
+    def __hash__(self):
         return hash(self.product_id)
 
     def __add__(self, other):
