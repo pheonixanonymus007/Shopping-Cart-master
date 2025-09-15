@@ -326,12 +326,12 @@ class ShoppingCartApp:
         tk.Label(frame, text=f"Welcome, {user.first_name} {user.last_name}", font=("Helvetica", 14)).pack(pady=10)
 
 
-        tk.Button(frame, text="View Product List", command=lambda: self.view_products(user), width=20).pack(pady=5)
-        tk.Button(frame, text="Add Products to Cart", command=lambda: self.add_to_cart(user), width=20).pack(pady=5)
-        tk.Button(frame, text="Remove Products from Cart", command=lambda: self.remove_from_cart(user), width=20).pack(pady=5)
-        tk.Button(frame, text="View Cart", command=lambda: self.view_cart(user), width=20).pack(pady=5)
-        tk.Button(frame, text="View Shopping History", command=lambda: self.view_history(user), width=20).pack(pady=5)
-        tk.Button(frame, text="Checkout", command=lambda: self.checkout(user), width=20).pack(pady=5)
+        tk.Button(frame, text="View Product List", command=lambda: self.view_products(user), width=20).pack(pady=10)
+        tk.Button(frame, text="Add Products to Cart", command=lambda: self.add_to_cart(user), width=20).pack(pady=10)
+        tk.Button(frame, text="Remove Products from Cart", command=lambda: self.remove_from_cart(user), width=20).pack(pady=10)
+        tk.Button(frame, text="View Cart", command=lambda: self.view_cart(user), width=20).pack(pady=10)
+        tk.Button(frame, text="View Shopping History", command=lambda: self.view_history(user), width=20).pack(pady=10)
+        tk.Button(frame, text="Checkout", command=lambda: self.checkout(user), width=20).pack(pady=10)
         tk.Button(frame, text="Logout", command=lambda: self.logout(user), width=20).pack(pady=10)
 
 #products
