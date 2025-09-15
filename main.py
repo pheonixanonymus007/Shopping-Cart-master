@@ -334,7 +334,7 @@ class ShoppingCartApp:
         tk.Button(frame, text="Checkout", command=lambda: self.checkout(user), width=20).pack(pady=10)
         tk.Button(frame, text="Logout", command=lambda: self.logout(user), width=20).pack(pady=10)
 
-#products
+#products 
 
     def view_products(self, user):
         self.clear_window()
