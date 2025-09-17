@@ -1,5 +1,5 @@
-1; (Pr.ID=1) Vanilla;3.0;Classic vanilla ice cream;50
-2; (Pr.ID=2) Chocolate;3.5;Rich and creamy chocolate flavor;50
+1; (Pr.ID=1) Vanilla;3.0;Classic vanilla ice cream;33
+2; (Pr.ID=2) Chocolate;3.5;Rich and creamy chocolate flavor;43
 3; (Pr.ID=3) Strawberry;3.0;Fresh strawberry taste;50
 4; (Pr.ID=4) Mint Chocolate Chip;3.5;Refreshing mint with chocolate chips;50
 5; (Pr.ID=5) Cookie Dough;4.0;Ice cream with chunks of cookie dough;50
