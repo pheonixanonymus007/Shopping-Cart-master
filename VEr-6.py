@@ -55,9 +55,9 @@ class Store:
             print("💳 Processing payment...")
             print("🎉 Thank you for shopping with us!")
             self.cart.clear()
-            save_products(self.products)   # 🔹 Persist stock update here
+            save_products(self.products)   # Persist stock update here
 
-# 🔹 Load products directly from products.txt
+# Load products directly from products.txt
 def load_products():
     products = []
     try:
@@ -71,13 +71,13 @@ def load_products():
         print("❌ File 'products.txt' not found. Starting with empty store.")
     return products
 
-# 🔹 Save updated stock back to products.txt
+# Save updated stock back to products.txt
 def save_products(products):
     with open("products.txt", "w") as f:
         for product in products:
             f.write(f"{product.pid},{product.name},{product.price},{product.stock}\n")
 
-# 🔹 Load users from users.txt
+# Load users from users.txt
 def load_users():
     users = {}
     try:
@@ -91,12 +91,12 @@ def load_users():
         print("❌ File 'users.txt' not found. No users available.")
     return users
 
-# 🔹 Save new user to users.txt
+# Save new user to users.txt
 def save_user(username, password):
     with open("users.txt", "a") as f:
         f.write(f"{username},{password}\n")
 
-# 🔹 Login
+# Login
 def login(users):
     print("\n===== Login =====")
     username = input("Username: ").strip()
@@ -108,7 +108,7 @@ def login(users):
         print("❌ Invalid username or password.")
         return None
 
-# 🔹 Register
+# Register
 def register(users):
     print("\n===== Register =====")
     while True:
@@ -124,7 +124,7 @@ def register(users):
     return username
 
 def main():
-    store = Store("CLI Couture")
+    store = Store("AG Clothes")
 
     # Load products
     for product in load_products():
@@ -136,7 +136,7 @@ def main():
     while True:
         # Force login/register if not logged in
         if not current_user:
-            print("\n===== Welcome to CLI Couture =====")
+            print("\n===== Welcome to AG Clothes =====")
             print("1. Login")
             print("2. Register")
             print("3. Exit")
@@ -155,7 +155,7 @@ def main():
 
         # If logged in
         else:
-            print(f"\n===== CLI Couture Menu (Logged in as {current_user}) =====")
+            print(f"\n===== Kiosk Menu (Logged in as {current_user}) =====")
             print("1. Show Products")
             print("2. Add to Cart")
             print("3. View Cart")
@@ -182,7 +182,7 @@ def main():
                 print(f"👋 Logged out, {current_user}.")
                 current_user = None
             elif choice == "6":
-                print("👋 Goodbye, stylish soul!")
+                print(f"👋 Goodbye, {current_user}!")
                 sys.exit()
             else:
                 print("❌ Invalid choice.")
