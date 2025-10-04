@@ -55,95 +55,137 @@ class Store:
             print("💳 Processing payment...")
             print("🎉 Thank you for shopping with us!")
             self.cart.clear()
+            save_products(self.products)   # 🔹 Persist stock update here
 
-# 🔹 Load products from products.txt
-def load_products_from_file(filename):
+# 🔹 Load products directly from products.txt
+def load_products():
     products = []
     try:
-        with open(filename, "r") as f:
+        with open("products.txt", "r") as f:
             for line in f:
                 parts = line.strip().split(",")
                 if len(parts) == 4:
                     pid, name, price, stock = parts
                     products.append(Product(int(pid), name, int(price), int(stock)))
     except FileNotFoundError:
-        print(f"❌ File '{filename}' not found. Starting with empty store.")
+        print("❌ File 'products.txt' not found. Starting with empty store.")
     return products
 
+# 🔹 Save updated stock back to products.txt
+def save_products(products):
+    with open("products.txt", "w") as f:
+        for product in products:
+            f.write(f"{product.pid},{product.name},{product.price},{product.stock}\n")
+
 # 🔹 Load users from users.txt
-def load_users(filename):
+def load_users():
     users = {}
     try:
-        with open(filename, "r") as f:
+        with open("users.txt", "r") as f:
             for line in f:
                 parts = line.strip().split(",")
                 if len(parts) == 2:
                     username, password = parts
                     users[username] = password
     except FileNotFoundError:
-        print(f"❌ File '{filename}' not found. No users available.")
+        print("❌ File 'users.txt' not found. No users available.")
     return users
 
-# 🔹 Login function
+# 🔹 Save new user to users.txt
+def save_user(username, password):
+    with open("users.txt", "a") as f:
+        f.write(f"{username},{password}\n")
+
+# 🔹 Login
 def login(users):
+    print("\n===== Login =====")
+    username = input("Username: ").strip()
+    password = input("Password: ").strip()
+    if username in users and users[username] == password:
+        print(f"✅ Welcome, {username}!")
+        return username
+    else:
+        print("❌ Invalid username or password.")
+        return None
+
+# 🔹 Register
+def register(users):
+    print("\n===== Register =====")
     while True:
-        print("\n===== Login =====")
-        username = input("Username: ").strip()
-        password = input("Password: ").strip()
-        if username in users and users[username] == password:
-            print(f"✅ Welcome, {username}!")
-            return username
+        username = input("Choose a username: ").strip()
+        if username in users:
+            print("❌ Username already exists. Try again.")
         else:
-            print("❌ Invalid username or password. Try again.")
+            break
+    password = input("Choose a password: ").strip()
+    save_user(username, password)
+    users[username] = password
+    print(f"✅ User '{username}' registered successfully!")
+    return username
 
 def main():
     store = Store("CLI Couture")
 
     # Load products
-    for product in load_products_from_file("products.txt"):
+    for product in load_products():
         store.add_product(product)
 
-    # Load users
-    users = load_users("users.txt")
-
+    users = load_users()
     current_user = None
 
     while True:
-        # Force login if not logged in
+        # Force login/register if not logged in
         if not current_user:
-            current_user = login(users)
+            print("\n===== Welcome to CLI Couture =====")
+            print("1. Login")
+            print("2. Register")
+            print("3. Exit")
+            choice = input("Choose an option: ")
 
-        print("\n===== CLI Couture Menu =====")
-        print("1. Show Products")
-        print("2. Add to Cart")
-        print("3. View Cart")
-        print("4. Checkout")
-        print("5. Logout")
-        print("6. Exit")
+            if choice == "1":
+                current_user = login(users)
+            elif choice == "2":
+                current_user = register(users)
+            elif choice == "3":
+                print("👋 Goodbye!")
+                sys.exit()
+            else:
+                print("❌ Invalid choice.")
+                continue
 
-        choice = input("Choose an option: ")
-
-        if choice == "1":
-            store.show_products()
-        elif choice == "2":
-            try:
-                pid = int(input("Enter product ID: "))
-                qty = int(input("Enter quantity: "))
-                store.add_to_cart(pid, qty)
-            except ValueError:
-                print("❌ Invalid input.")
-        elif choice == "3":
-            store.show_cart()
-        elif choice == "4":
-            store.checkout()
-        elif choice == "5":
-            print(f"👋 Logged out, {current_user}.")
-            current_user = None
-        elif choice == "6":
-            print("👋 Goodbye, stylish soul!")
-            sys.exit()
+        # If logged in
         else:
-            print("❌ Invalid choice.")
+            print(f"\n===== CLI Couture Menu (Logged in as {current_user}) =====")
+            print("1. Show Products")
+            print("2. Add to Cart")
+            print("3. View Cart")
+            print("4. Checkout")
+            print("5. Logout")
+            print("6. Exit")
+
+            choice = input("Choose an option: ")
+
+            if choice == "1":
+                store.show_products()
+            elif choice == "2":
+                try:
+                    pid = int(input("Enter product ID: "))
+                    qty = int(input("Enter quantity: "))
+                    store.add_to_cart(pid, qty)
+                except ValueError:
+                    print("❌ Invalid input.")
+            elif choice == "3":
+                store.show_cart()
+            elif choice == "4":
+                store.checkout()
+            elif choice == "5":
+                print(f"👋 Logged out, {current_user}.")
+                current_user = None
+            elif choice == "6":
+                print("👋 Goodbye, stylish soul!")
+                sys.exit()
+            else:
+                print("❌ Invalid choice.")
 
 if __name__ == "__main__":
     main()
