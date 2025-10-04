@@ -1,10 +1,3 @@
-1; (Pr.ID=1) Vanilla;3.0;Classic vanilla ice cream;33
-2; (Pr.ID=2) Chocolate;3.5;Rich and creamy chocolate flavor;43
-3; (Pr.ID=3) Strawberry;3.0;Fresh strawberry taste;50
-4; (Pr.ID=4) Mint Chocolate Chip;3.5;Refreshing mint with chocolate chips;50
-5; (Pr.ID=5) Cookie Dough;4.0;Ice cream with chunks of cookie dough;50
-6; (Pr.ID=6) Rocky Road;4.0;Chocolate ice cream with nuts and marshmallows;50
-7; (Pr.ID=7) Butter Pecan;3.5;Creamy ice cream with butter-roasted pecans;50
-8; (Pr.ID=8) Mango;3.5;Tropical mango flavor;50
-9; (Pr.ID=9) Cookies and Cream;4.0;Vanilla ice cream with cookie pieces;50
-10;(Pr.ID=10) Pistachio;4.0;Nutty pistachio ice cream;50
+1,Hoodie,1500,10
+2,Jeans,2000,5
+3,"Sneakers, Limited Edition",3000,2
